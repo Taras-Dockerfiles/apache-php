@@ -8,12 +8,22 @@ Base on Ubuntu, with Apache, PHP, Node.js and other softwares tuned and installe
 
 > For older dockerfiles earlier than version 3.8, see the old [Wujidadi Dockerfiles](https://github.com/Wujidadi/Dockerfiles) repository.
 
+### 3.10 (2023-10-02)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  * **Vim 9.0.1968**
+  * **GNU Nano 7.2**
+  * **Apache 2.4.57**
+  * **PHP 8.2.11**
+  * **Composer 2.6.4**
+  * **Swoole 5.1.0**
+  * **Microsoft ODBC Driver for SQL Server 18.3.1.1**
+  * **Node.js 20.8.0**
+    * **npm 10.1.0**
+
 ### 3.9.1 (2023-09-23)
 
-* `docker buildx` commands: (`$D` is a custom alias of the log directory)
-  ```sh
-  docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64 --rm -t wujidadi/ap:3.9.1 -t wujidadi/ap:latest . 2>&1 | tee $D/docker-build-ap.log
-  ```
 * PHPUnit and Laravel testing scripts (`pat`, `xpat` and `xpu`) are added.
 * OS: **Ubuntu 22.04 LTS**
 * Main software versions:
