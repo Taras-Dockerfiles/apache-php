@@ -8,6 +8,20 @@ Base on Ubuntu, with Apache, PHP, Node.js and other softwares tuned and installe
 
 > For older dockerfiles earlier than version 3.8, see the old [Wujidadi Dockerfiles](https://github.com/Wujidadi/Dockerfiles) repository.
 
+### 3.11 (2023-11-01)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  * **Vim 9.0.2081**
+  * **GNU Nano 7.2**
+  * **Apache 2.4.58**
+  * **PHP 8.2.12**
+  * **Composer 2.6.5**
+  * **Swoole 5.1.0**
+  * **Microsoft ODBC Driver for SQL Server 18.3.2.1**
+  * **Node.js 21.1.0**
+    * **npm 10.2.2**
+
 ### 3.10 (2023-10-02)
 
 * OS: **Ubuntu 22.04 LTS**
