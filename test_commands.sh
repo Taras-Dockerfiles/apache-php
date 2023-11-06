@@ -6,10 +6,10 @@ docker buildx rm multiarch
 docker buildx create --name multiarch --use
 
 # Build the Docker image
-docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64 --rm -t wujidadi/ap:3.11 -t wujidadi/ap:latest . 2>&1 | tee $D/docker-build-ap.log
+docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64 --rm -t wujidadi/ap:3.1.1 . 2>&1 | tee $D/docker-build-ap.log
 
 # Create test container and delete it finally
-docker run -d -p 50000:80 -it --name Test wujidadi/ap:3.11
+docker run -d -p 50000:80 -it --name Test wujidadi/ap:3.1.1
 # docker exec -it Test zsh
 docker exec -it Test vim --version | grep 'Included patches'
 docker exec -it Test nano -V | grep 'GNU nano, version'
