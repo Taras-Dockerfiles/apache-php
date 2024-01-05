@@ -1,5 +1,19 @@
 # Change Log (since version 0.17)
 
+## 3.13-php8.1, 3.13-php8.2, 3.13-php8.3 (2023-01-05)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  - **Vim 9.1.0011**
+  - **GNU Nano 7.2**
+  - **Apache 2.4.58**
+  - **PHP 8.1.27** / **PHP 8.2.14** / **PHP 8.3.1**
+  - **Composer 2.6.6**
+  - **Swoole 5.1.1**
+  - **Microsoft ODBC Driver for SQL Server 18.3.2.1**
+  - **Node.js 21.5.0**
+    + **npm 10.2.5**
+
 ## 3.12.1-php8.1, 3.12.1-php8.2, 3.12.1-php8.3 (2023-12-12)
 
 * OS: **Ubuntu 22.04 LTS**
