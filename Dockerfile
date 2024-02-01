@@ -5,11 +5,11 @@ ARG user=user
 ARG appdir=application
 ARG php_version=8.2
 ARG node_version=21
-ARG vim_tag=v9.1.0011
+ARG vim_tag=v9.1.0067
 ARG nano_great_version=7
 ARG nano_version=7.2
 ARG msodbc_version=18
-ARG swoole_version=5.1.1
+ARG swoole_version=5.1.2
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
@@ -75,7 +75,7 @@ RUN echo '';\
     add-apt-repository -y ppa:ondrej/apache2;\
     add-apt-repository -y ppa:ondrej/php;\
     apt-get update && apt-get upgrade -y;\
-    apt-get install -y --no-install-recommends php${php_version} php${php_version}-cli php${php_version}-common php${php_version}-fpm php${php_version}-raphf php${php_version}-http php${php_version}-xdebug php${php_version}-pdo php-pear php${php_version}-curl php${php_version}-dev php${php_version}-gd php${php_version}-mbstring php${php_version}-zip php${php_version}-mysql php${php_version}-mysqlnd php${php_version}-opcache php${php_version}-readline php${php_version}-xml php${php_version}-tidy php${php_version}-imagick php${php_version}-gmp php${php_version}-bz2 php${php_version}-soap php${php_version}-bcmath php${php_version}-intl php${php_version}-pgsql php${php_version}-sqlite3 apache2 apache2-doc apache2-utils libapache2-mod-php${php_version} odbc-postgresql;\
+    apt-get install -y --no-install-recommends php${php_version} php${php_version}-cli php${php_version}-common php${php_version}-fpm php${php_version}-raphf php${php_version}-http php${php_version}-xdebug php${php_version}-pdo php-pear php${php_version}-curl php${php_version}-dev php${php_version}-gd php${php_version}-mbstring php${php_version}-zip php${php_version}-mysql php${php_version}-mysqlnd php${php_version}-opcache php${php_version}-readline php${php_version}-xml php${php_version}-tidy php${php_version}-imagick php${php_version}-gmp php${php_version}-bz2 php${php_version}-soap php${php_version}-bcmath php${php_version}-intl php${php_version}-igbinary php${php_version}-dev php${php_version}-pgsql php${php_version}-sqlite3 apache2 apache2-doc apache2-utils libapache2-mod-php${php_version} odbc-postgresql;\
     a2enmod headers;\
     a2enmod rewrite;\
     ln -s /usr/sbin/php-fpm${php_version} /usr/sbin/php-fpm;\
@@ -160,9 +160,12 @@ RUN echo '';\
     echo 'Installing Swoole ...';\
     echo '================================';\
     echo '';\
-    printf "no\nyes\nyes\nno\n" | pecl install swoole-${swoole_version};\
-    echo "extension=swoole.so\n" > /etc/php/${php_version}/mods-available/swoole.ini;\
+    curl -L https://github.com/swoole/swoole-src/archive/refs/tags/v${swoole_version}.tar.gz -o /swoole.tar.gz;\
+    cd / && tar xvzf /swoole.tar.gz && rm /swoole.tar.gz && cd swoole-src-${swoole_version};\
+    phpize && ./configure && make && make install;\
+    echo 'extension=swoole.so' > /etc/php/${php_version}/mods-available/swoole.ini;\
     phpenmod swoole;\
+    cd / && rm -rf /swoole-src-${swoole_version};\
     echo '';\
     echo '======================================================================';\
     echo 'Installing Microsoft SQL Server Driver for PHP with Microsoft ODBC ...';\
@@ -303,6 +306,13 @@ RUN ln -s /home/${user}/.oh-my-zsh /root;\
     echo '';\
     echo 'export PATH="$PATH:/opt/mssql-tools${msodbc_version}/bin"' >> /root/.bashrc;\
     echo 'export PATH="$PATH:/opt/mssql-tools${msodbc_version}/bin"' >> /root/.zshrc;\
+    echo '';\
+    echo '========================================';\
+    echo 'Change default text editor to Vim ...';\
+    echo '========================================';\
+    echo '';\
+    echo 'export EDITOR=vim' >> /root/.zshrc;\
+    echo 'export EDITOR=vim' >> /home/${user}/.zshrc;\
     echo '';\
     echo '================================';\
     echo 'Image building finishes';\
